@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#post-quantum-and-hybrid-key-exchange-methods-laboratory" class="md-skip">
+        <a href="#post-quantum-and-hybrid-mechanisms-laboratory" class="md-skip">
           Skip to content
         </a>
       
@@ -1598,7 +1598,7 @@
   <span class="md-ellipsis">
     
   
-    PQ and Hybrid Key Exchange
+    PQ and Hybrid Mechanisms
   
 
     
@@ -1614,7 +1614,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    PQ and Hybrid Key Exchange
+    PQ and Hybrid Mechanisms
   
 
           </label>
@@ -1683,10 +1683,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#post-quantum-and-hybrid-key-exchange-methods-laboratory" class="md-nav__link">
+  <a href="#post-quantum-and-hybrid-mechanisms-laboratory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Quantum and Hybrid Key Exchange methods Laboratory
+        Post-Quantum and Hybrid Mechanisms Laboratory
       
     </span>
   </a>
@@ -1803,10 +1803,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#post-quantum-and-hybrid-key-exchange-methods-laboratory" class="md-nav__link">
+  <a href="#post-quantum-and-hybrid-mechanisms-laboratory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Quantum and Hybrid Key Exchange methods Laboratory
+        Post-Quantum and Hybrid Mechanisms Laboratory
       
     </span>
   </a>
@@ -1868,8 +1868,10 @@
 
   <h1>Overview</h1>
 
-<h2 id="post-quantum-and-hybrid-key-exchange-methods-laboratory">Post-Quantum and Hybrid Key Exchange methods Laboratory</h2>
+<h2 id="post-quantum-and-hybrid-mechanisms-laboratory">Post-Quantum and Hybrid Mechanisms Laboratory</h2>
 <p>The post-quantum readiness of secure tunneling protocols is primarily determined by how key establishment, authentication, and trust anchors are defined within their handshake mechanisms.</p>
+<p>Post-quantum migration affects different parts of secure tunnels and secure channels in different ways. Key establishment focus is how peers derive shared secrets for a session. Authentication focus is how peers prove their identities, for example through certificates, signatures, or host keys.</p>
+<p>A protocol may use hybrid post-quantum key establishment while still using classical RSA or ECDSA authentication. Conversely, a post-quantum signature provides authentication but does not by itself establish traffic keys.</p>
 <p>Protocols that rely on classical public-key cryptography for key exchange or authentication are vulnerable to future quantum adversaries, particularly under the "harvest now, decrypt later" threat model.</p>
 <p>In contrast, symmetric cryptography remains comparatively resilient, as quantum attacks provide only a quadratic advantage. This can be mitigated through the use of larger key sizes, such as the ones used in AES-256.</p>
 <p>A central element of current post-quantum transition strategies is the use of hybrid key exchange, where session secrets are derived from both a classical Diffie–Hellman exchange and a post-quantum Key Encapsulation Mechanism (KEM). This approach provides confidentiality as long as at least one of the two underlying primitives remains secure.</p>

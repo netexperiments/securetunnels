@@ -1596,7 +1596,7 @@
   <span class="md-ellipsis">
     
   
-    PQ and Hybrid Key Exchange
+    PQ and Hybrid Mechanisms
   
 
     
@@ -1612,7 +1612,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    PQ and Hybrid Key Exchange
+    PQ and Hybrid Mechanisms
   
 
           </label>
@@ -1753,6 +1753,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ml-dsa-signatures-as-authentication-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ML-DSA Signatures as Authentication Material
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ml-dsa-certificate-authentication-in-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ML-DSA Certificate Authentication in TLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hybrid-group-mismatch" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1849,6 +1871,28 @@
     <span class="md-ellipsis">
       
         ML-KEM primitive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ml-dsa-signatures-as-authentication-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ML-DSA Signatures as Authentication Material
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ml-dsa-certificate-authentication-in-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ML-DSA Certificate Authentication in TLS
       
     </span>
   </a>
@@ -2010,48 +2054,139 @@
   </p>
 <figcaption>Figure 8: MLKEM encapsulation check</figcaption>
 </figure>
+<h2 id="ml-dsa-signatures-as-authentication-material">ML-DSA Signatures as Authentication Material</h2>
+<p>For this experiment, we will generate a signing key using the post-quantum algorithm ML-DSA-65 and test how it functions by signing a text file, verifying the signature, modifying the file, and then attempting to verify the signature again.</p>
+<p>First, generate the key we will use and create the text file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openssl<span class="w"> </span>genpkey<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-algorithm<span class="w"> </span>ML-DSA-65<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-out<span class="w"> </span>mldsa65.key
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Secure Tunneling Labs post-quantum signature test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>message.txt
+</span></code></pre></div>
+<p>With the key and message file ready, we will now sign the file using the generated key:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openssl<span class="w"> </span>pkeyutl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-sign<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>-in<span class="w"> </span>message.txt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-inkey<span class="w"> </span>mldsa65.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-out<span class="w"> </span>message.sig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>-pkeyopt<span class="w"> </span>message-encoding:1
+</span></code></pre></div>
+<p>We now have a signature generated using our signing key and the contents of the message file. We can verify the signature with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>openssl<span class="w"> </span>pkeyutl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-verify<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-in<span class="w"> </span>message.txt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>-inkey<span class="w"> </span>mldsa65.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>-sigfile<span class="w"> </span>message.sig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>-pkeyopt<span class="w"> </span>message-encoding:1
+</span></code></pre></div>
+<p>This should result in a successful verification because the message remains unchanged and the key used to generate the signature is the same key used to verify it.</p>
+<p>Now, let's tamper with the message and see whether the verification remains successful.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;tampered&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>message.txt
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>openssl<span class="w"> </span>pkeyutl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>-verify<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>-in<span class="w"> </span>message.txt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>-inkey<span class="w"> </span>mldsa65.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span>-sigfile<span class="w"> </span>message.sig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span>-pkeyopt<span class="w"> </span>message-encoding:1
+</span></code></pre></div>
+<p>We should now see an output similar to the one shown in Figure 9, where the verification fails because the message is now different from the one that was originally signed. As a result, the signature no longer matches the modified message, causing the verification check to fail.</p>
+<figure id="figure-9">
+<p><img alt="Figure 9: MLDSA Signature check" src="../../images/PQMLDSA1.png" />
+  </p>
+<figcaption>Figure 9: MLDSA Signature check</figcaption>
+</figure>
+<p>As we can see, post-quantum methods are not limited to key exchange. Some, such as ML-DSA, are designed to provide authentication through digital signatures that are intended to resist attacks from sufficiently powerful quantum computers.</p>
+<h2 id="ml-dsa-certificate-authentication-in-tls">ML-DSA Certificate Authentication in TLS</h2>
+<p>For this experiment, we will use ML-DSA to generate a key that will be used to generate a certificate. This certificate will then be used to authenticate the server during a TLS connection.</p>
+<p>First, generate the new key and create the certificate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>openssl<span class="w"> </span>genpkey<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>-algorithm<span class="w"> </span>ML-DSA-65<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>-out<span class="w"> </span>mldsa-server.key
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>openssl<span class="w"> </span>req<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>-new<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>-x509<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span>-key<span class="w"> </span>mldsa-server.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span>-out<span class="w"> </span>mldsa-server.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span>-subj<span class="w"> </span><span class="s2">&quot;/CN=pq-tls-server&quot;</span>
+</span></code></pre></div>
+<p>Now that we have our certificate, copy it to the client so that it can use the certificate to authenticate the server:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>In<span class="w"> </span>PQ2:
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>cat<span class="w"> </span>mldsa-server.crt
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>In<span class="w"> </span>PQ1:
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>nano<span class="w"> </span>mldsa-server.crt
+</span></code></pre></div>
+<p>Now, start the server, which will present its certificate and use ML-KEM as the key exchange mechanism:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>openssl<span class="w"> </span>s_server<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>-accept<span class="w"> </span><span class="m">4434</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>-cert<span class="w"> </span>mldsa-server.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>-key<span class="w"> </span>mldsa-server.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span>-tls1_3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span>-groups<span class="w"> </span>X25519MLKEM768<span class="w"> </span><span class="se">\</span>
+</span></code></pre></div>
+<p>Then, start the client, which will verify the server's certificate and use the same key exchange group:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>openssl<span class="w"> </span>s_client<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>-connect<span class="w"> </span><span class="m">10</span>.10.10.1:4434<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>-tls1_3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>-groups<span class="w"> </span>X25519MLKEM768<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>-CAfile<span class="w"> </span>mldsa-server.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>-verify_return_error<span class="w"> </span><span class="se">\</span>
+</span></code></pre></div>
+<p>The connection should be successful because the certificate can be correctly verified. Although the use of the ML-DSA certificate is not immediately visible in the Wireshark packet exchange, we can confirm it from the terminal output, as shown in Figure 10:</p>
+<figure id="figure-10">
+<p><img alt="Figure 10: MLDSA Certificate in TLS" src="../../images/PQMLDSA2.png" />
+  </p>
+<figcaption>Figure 10: MLDSA Certificate in TLS</figcaption>
+</figure>
+<p>We can see that the certificate was received and successfully verified because the TLS connection was established. The terminal output also confirms that the certificate's signature algorithm is ML-DSA-65.</p>
+<p>This demonstrates that certificate-based authentication in real-world scenarios is no longer limited to classical cryptographic algorithms. Post-quantum signature algorithms such as ML-DSA can also be used for certificate-based authentication in TLS.</p>
 <h2 id="hybrid-group-mismatch">Hybrid Group Mismatch</h2>
 <p>For our final experiment, we will examine how TLS handles mismatches between key exchange groups, including mismatches between classical and hybrid groups and between different hybrid groups.</p>
 <p>First, we will configure the server to use only the classical X25519 group:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openssl<span class="w"> </span>s_server<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>-accept<span class="w"> </span><span class="m">4433</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>-cert<span class="w"> </span>/lab/certs/server.crt<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>-key<span class="w"> </span>/lab/certs/server.key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>-groups<span class="w"> </span>X25519<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>-www
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>openssl<span class="w"> </span>s_server<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span>-accept<span class="w"> </span><span class="m">4433</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span>-cert<span class="w"> </span>/lab/certs/server.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span>-key<span class="w"> </span>/lab/certs/server.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span>-groups<span class="w"> </span>X25519<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span>-www
 </span></code></pre></div>
 <p>Then, we will connect to it using a client restricted to the hybrid X25519MLKEM768 group:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openssl<span class="w"> </span>s_client<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>-connect<span class="w"> </span><span class="m">10</span>.10.10.1:4433<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>-groups<span class="w"> </span>X25519MLKEM768<span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>openssl<span class="w"> </span>s_client<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span>-connect<span class="w"> </span><span class="m">10</span>.10.10.1:4433<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span>-groups<span class="w"> </span>X25519MLKEM768<span class="w"> </span><span class="se">\</span>
 </span></code></pre></div>
 <p>The handshake should fail because the client and server do not have a mutually supported key exchange group.</p>
-<p>The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 9. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.</p>
-<figure id="figure-9">
-<p><img alt="Figure 9: Handshake failure between classic and hybrid groups" src="../../images/PQMIS1.png" />
+<p>The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 11. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.</p>
+<figure id="figure-11">
+<p><img alt="Figure 11: Handshake failure between classic and hybrid groups" src="../../images/PQMIS1.png" />
   </p>
-<figcaption>Figure 9: Handshake failure between classic and hybrid groups</figcaption>
+<figcaption>Figure 11: Handshake failure between classic and hybrid groups</figcaption>
 </figure>
 <p>We expected this outcome because the client and server are restricted to different groups. However, what happens if we try the same experiment using two different hybrid groups?</p>
 <p>To do this, reset the server and use the following commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>openssl<span class="w"> </span>s_server<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>-accept<span class="w"> </span><span class="m">4433</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>-cert<span class="w"> </span>/lab/certs/server.crt<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>-key<span class="w"> </span>/lab/certs/server.key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>-groups<span class="w"> </span>SecP384r1MLKEM1024<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>-www
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>openssl<span class="w"> </span>s_server<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span>-accept<span class="w"> </span><span class="m">4433</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span>-cert<span class="w"> </span>/lab/certs/server.crt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span>-key<span class="w"> </span>/lab/certs/server.key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span>-tls1_3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>-groups<span class="w"> </span>SecP384r1MLKEM1024<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span>-www
 </span></code></pre></div>
 <p>This will start a new server restricted to the SecP384r1MLKEM1024 hybrid key exchange group.</p>
 <p>Then, reconnect using the same hybrid client as before and observe the outcome:</p>
-<figure id="figure-10">
-<p><img alt="Figure 10: Handshake failure between two hybrid groups" src="../../images/PQMIS2.png" />
+<figure id="figure-12">
+<p><img alt="Figure 12: Handshake failure between two hybrid groups" src="../../images/PQMIS2.png" />
   </p>
-<figcaption>Figure 10: Handshake failure between two hybrid groups</figcaption>
+<figcaption>Figure 12: Handshake failure between two hybrid groups</figcaption>
 </figure>
-<p>As we can see in Figure 10, even though both groups are hybrid, a mismatch still occurs and the handshake ends with an error.</p>
+<p>As we can see in Figure 12, even though both groups are hybrid, a mismatch still occurs and the handshake ends with an error.</p>
 <p>The important point is that the failure does not occur simply because one group is classical and the other is hybrid. Instead, the handshake fails because the client and server do not share a mutually supported group.</p>
 <p>The same principle applies when both groups are hybrid. Even though X25519MLKEM768 and SecP384r1MLKEM1024 are both hybrid groups, they are different key exchange groups and cannot be used interchangeably.</p>
 <p>TLS does not require the client and server to use groups from the same algorithm family. Instead, they must have at least one mutually supported group that can be successfully negotiated and used for the handshake.</p>
