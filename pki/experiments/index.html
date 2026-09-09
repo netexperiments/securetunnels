@@ -1891,7 +1891,7 @@
 </span></code></pre></div>
 <p>A TLS connection should be established, and we can scroll through the terminal output to examine the certificate-chain information and see how it is used during the handshake.</p>
 <figure id="figure-1">
-<p><img alt="Figure 1: Client-side certificate chain" src="../../images/PKICHAIN1.png" />
+<p><img alt="Figure 1: Client-side certificate chain" src="../../images/PKICHAIN1.png" width="600" />
   </p>
 <figcaption>Figure 1: Client-side certificate chain</figcaption>
 </figure>
@@ -1899,7 +1899,7 @@
 <p>The chain contains the end-entity certificate, the intermediate certificate that signed it, and the Root CA that ultimately signed the intermediate certificate and acts as the trust anchor. The root certificate is normally already available in the client's trusted certificate store rather than being transmitted by the server.</p>
 <p>We can then see information regarding the certificates, such as their names, issuers, validity periods, signing algorithms, and public keys.</p>
 <figure id="figure-2">
-<p><img alt="Figure 2: Server-side certificate chain" src="../../images/PKICHAIN2.png" />
+<p><img alt="Figure 2: Server-side certificate chain" src="../../images/PKICHAIN2.png" width="600" />
   </p>
 <figcaption>Figure 2: Server-side certificate chain</figcaption>
 </figure>
@@ -1922,13 +1922,13 @@
 </span></code></pre></div>
 <p>As we can see in Figure 3, the client side has minimal to no changes. It still validates the server's certificate chain and then continues with the normal TLS handshake.</p>
 <figure id="figure-3">
-<p><img alt="Figure 3: Client-side TLS authentication" src="../../images/PKITLSCLIENT.png" />
+<p><img alt="Figure 3: Client-side TLS authentication" src="../../images/PKITLSCLIENT.png" width="600" />
   </p>
 <figcaption>Figure 3: Client-side TLS authentication</figcaption>
 </figure>
 <p>On the server side, however, no client certificate is requested or received. As a result, the server performs the normal handshake, negotiating algorithms and parameters and establishing the connection without authenticating the client's identity, as seen in Figure 4.</p>
 <figure id="figure-4">
-<p><img alt="Figure 4: Server-side TLS authentication" src="../../images/PKITLSSERVER.png" />
+<p><img alt="Figure 4: Server-side TLS authentication" src="../../images/PKITLSSERVER.png" width="600" />
   </p>
 <figcaption>Figure 4: Server-side TLS authentication</figcaption>
 </figure>
@@ -1950,19 +1950,19 @@
 </span></code></pre></div>
 <p>We can see the client output in Figure 5, which includes the certificate chain belonging to the server certificate. This means that the client has authenticated the server using its trusted Root CA.</p>
 <figure id="figure-5">
-<p><img alt="Figure 5: Client-side DTLS authentication" src="../../images/PKIDTLSCLIENT.png" />
+<p><img alt="Figure 5: Client-side DTLS authentication" src="../../images/PKIDTLSCLIENT.png" width="600" />
   </p>
 <figcaption>Figure 5: Client-side DTLS authentication</figcaption>
 </figure>
 <p>From the server output in Figure 6, we can see that no client certificate was received. Only the necessary parameters and algorithms were negotiated, with no client certificate authentication taking place.</p>
 <figure id="figure-6">
-<p><img alt="Figure 6: Server-side DTLS authentication" src="../../images/PKIDTLSSERVER.png" />
+<p><img alt="Figure 6: Server-side DTLS authentication" src="../../images/PKIDTLSSERVER.png" width="600" />
   </p>
 <figcaption>Figure 6: Server-side DTLS authentication</figcaption>
 </figure>
 <p>This is further confirmed by Figure 7, which shows the two certificates sent through the connection: the DTLS server certificate and the IntermediateCA2 certificate.</p>
 <figure id="figure-7">
-<p><img alt="Figure 7: Server certificate in WireShark" src="../../images/PKIDTLSWIRE1.png" />
+<p><img alt="Figure 7: Server certificate in WireShark" src="../../images/PKIDTLSWIRE1.png" width="600" />
   </p>
 <figcaption>Figure 7: Server-side DTLS authentication</figcaption>
 </figure>
@@ -1991,13 +1991,13 @@
 <p>We can see that the DTLS client side has no meaningful changes. It still validates the server's certificate chain and authenticates the server using its certificate.</p>
 <p>The main difference lies on the server side and in what was captured by Wireshark. First, we can observe in Figure 8 that the client certificate and its chain are received by the server, which can then authenticate the client, completing the mutual-authentication process.</p>
 <figure id="figure-8">
-<p><img alt="Figure 8: Server-side DTLS authentication" src="../../images/PKIDTLSSERVER2.png" />
+<p><img alt="Figure 8: Server-side DTLS authentication" src="../../images/PKIDTLSSERVER2.png" width="600" />
   </p>
 <figcaption>Figure 8: Server-side DTLS authentication</figcaption>
 </figure>
 <p>Second, we can see in Wireshark, in Figure 9, that with mutual authentication, not only is the server certificate sent, but the client's certificate is also sent for authentication.</p>
 <figure id="figure-9">
-<p><img alt="Figure 9: Server and Client certificate in WireShark" src="../../images/PKIDTLSWIRE2.png" />
+<p><img alt="Figure 9: Server and Client certificate in WireShark" src="../../images/PKIDTLSWIRE2.png" width="600" />
   </p>
 <figcaption>Figure 9: Server and Client certificate in WireShark</figcaption>
 </figure>
@@ -2034,7 +2034,7 @@
 </span></code></pre></div>
 <p>With this configuration, we can see a more interesting error, shown in Figure 10. The handshake fails because the server cannot verify the issuer of the client certificate. The certificate belongs to the DTLSServer hierarchy and was issued by IntermediateCA2, while the server's configured trust store does not contain a valid chain leading from that certificate to its trusted Root CA through the expected intermediate.</p>
 <figure id="figure-10">
-<p><img alt="Figure 10: Client certificate failed authentication" src="../../images/PKIWRONGKEY.png" />
+<p><img alt="Figure 10: Client certificate failed authentication" src="../../images/PKIWRONGKEY.png" width="600" />
   </p>
 <figcaption>Figure 10: Client certificate failed authentication</figcaption>
 </figure>
@@ -2055,7 +2055,7 @@
 </span></code></pre></div>
 <p>Since the client is now configured to trust IntermediateCA2 as its CA while the server's certificate chain was issued through IntermediateCA1, the client cannot validate the server certificate against its configured trust anchor. Although the error shown in Figure 11 is again unable to get local issuer certificate, it occurs for a different reason.</p>
 <figure id="figure-11">
-<p><img alt="Figure 11: Server certificate failed authentication in Client" src="../../images/PKIWRONGCA.png" />
+<p><img alt="Figure 11: Server certificate failed authentication in Client" src="../../images/PKIWRONGCA.png" width="600" />
   </p>
 <figcaption>Figure 11: Server certificate failed authentication in Client</figcaption>
 </figure>

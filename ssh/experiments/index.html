@@ -1896,7 +1896,7 @@
 <p>We will begin our experiments by studying the handshake that SSH uses to establish a secure connection between a client and a server and verifying whether it matches what we saw in the Overview.</p>
 <p>To do this, begin by placing a Wireshark probe between SSHClient and MitM, then establish a connection between SSHClient and SSHServer1.</p>
 <figure id="figure-1">
-<p><img alt="Figure 1: SSH Handshake" src="../../images/SSHHANDLIVE.png" />
+<p><img alt="Figure 1: SSH Handshake" src="../../images/SSHHANDLIVE.png" width="750" />
   </p>
 <figcaption>Figure 1: SSH Handshake</figcaption>
 </figure>
@@ -1904,31 +1904,31 @@
 <p>The first three packets are used to establish the TCP connection that SSH will use to continue the handshake.</p>
 <p>Following those packets, we will use the ssh filter in Wireshark to reduce the clutter in the capture and see each step more clearly.</p>
 <figure id="figure-2">
-<p><img alt="Figure 2: SSH Version identification" src="../../images/SSHVERS.png" />
+<p><img alt="Figure 2: SSH Version identification" src="../../images/SSHVERS.png" width="750" />
   </p>
 <figcaption>Figure 2: SSH Version identification</figcaption>
 </figure>
 <p>In the first two SSH messages, displayed in Figure 2, we can see that the information exchanged includes the SSH protocol version and the software identification string used by both devices. Although this is a simple step, it is important to ensure that the two devices can communicate using a compatible SSH protocol version.</p>
 <figure id="figure-3">
-<p><img alt="Figure 3: SSH Key Exchange negotiation" src="../../images/SSHKEX.png" />
+<p><img alt="Figure 3: SSH Key Exchange negotiation" src="../../images/SSHKEX.png" width="750" />
   </p>
 <figcaption>Figure 3: SSH Key Exchange negotiation</figcaption>
 </figure>
 <p>Following those messages, the next two, seen in Figure 3, demonstrate the key-exchange negotiation between the server and client. Each device sends a list of supported key-exchange, encryption, compression, and message-authentication algorithms.</p>
 <figure id="figure-4">
-<p><img alt="Figure 4: SSH Client Diffie-Hellman public key shared" src="../../images/SSHDH.png" />
+<p><img alt="Figure 4: SSH Client Diffie-Hellman public key shared" src="../../images/SSHDH.png" width="750" />
   </p>
 <figcaption>Figure 4: SSH Client Diffie-Hellman public key shared</figcaption>
 </figure>
 <p>The next message is sent by the client, as seen in Figure 4, and contains the public value generated for the Diffie-Hellman key exchange. The server responds with the message shown in Figure 5, containing its host key, its own Diffie-Hellman public value, and a signature that authenticates the key exchange. Finally, the server indicates that it will begin using the newly negotiated keys.</p>
 <figure id="figure-5">
-<p><img alt="Figure 5: SSH Server begins encrypted exchange" src="../../images/SSHNEWKEYS.png" />
+<p><img alt="Figure 5: SSH Server begins encrypted exchange" src="../../images/SSHNEWKEYS.png" width="750" />
   </p>
 <figcaption>Figure 5: SSH Server begins encrypted exchange</figcaption>
 </figure>
 <p>The client responds with the message shown in Figure 6, indicating that it will also begin using the newly negotiated keys. From this point onward, the remaining SSH traffic is encrypted, including the user's password authentication.</p>
 <figure id="figure-6">
-<p><img alt="Figure 6: SSH Client begins encrypted exchange" src="../../images/SSHCLIENTNEWKEYS.png" />
+<p><img alt="Figure 6: SSH Client begins encrypted exchange" src="../../images/SSHCLIENTNEWKEYS.png" width="750" />
   </p>
 <figcaption>Figure 6: SSH Client begins encrypted exchange</figcaption>
 </figure>
@@ -2043,7 +2043,7 @@
 </span></code></pre></div>
 <p>This way, when the user connects to the server, the server requests the user's password, which is checked against the credentials stored on the server.</p>
 <figure id="figure-7">
-<p><img alt="Figure 7: SSH Client password login" src="../../images/SSHPASS.png" />
+<p><img alt="Figure 7: SSH Client password login" src="../../images/SSHPASS.png" width="400" />
   </p>
 <figcaption>Figure 7: SSH Client password login</figcaption>
 </figure>
@@ -2054,7 +2054,7 @@
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>nano<span class="w"> </span>/etc/ssh/sshd_config
 </span></code></pre></div>
 <figure id="figure-8">
-<p><img alt="Figure 8: SSH Server 2 configuration" src="../../images/SSHPBK.png" />
+<p><img alt="Figure 8: SSH Server 2 configuration" src="../../images/SSHPBK.png" width="600" />
   </p>
 <figcaption>Figure 8: SSH Server 2 configuration</figcaption>
 </figure>
@@ -2065,13 +2065,13 @@
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>nano<span class="w"> </span>/home/sshuser/.ssh/authorized_keys
 </span></code></pre></div>
 <figure id="figure-9">
-<p><img alt="Figure 9: SSH Server 2 authorized keys" src="../../images/SSHKEYSTR.png" />
+<p><img alt="Figure 9: SSH Server 2 authorized keys" src="../../images/SSHKEYSTR.png" width="600" />
   </p>
 <figcaption>Figure 9: SSH Server 2 authorized keys</figcaption>
 </figure>
 <p>With all of this configured, when logging in to SSHServer2, we are immediately authenticated and logged in to the server because our key pair is used for authentication.</p>
 <figure id="figure-10">
-<p><img alt="Figure 10: SSH Client authenticated through key pair" src="../../images/SSHKEYLOG.png" />
+<p><img alt="Figure 10: SSH Client authenticated through key pair" src="../../images/SSHKEYLOG.png" width="600" />
   </p>
 <figcaption>Figure 10: SSH Client authenticated through key pair</figcaption>
 </figure>

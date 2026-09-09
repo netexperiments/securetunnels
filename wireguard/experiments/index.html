@@ -1857,7 +1857,7 @@
 <p>Now let's evaluate whether this is correct and whether it corresponds to the actual handshake performed.</p>
 <p>To perform this experiment, ensure that all WireGuard interfaces are turned off, and then place a Wireshark probe on the connection between WG1 and the switch.</p>
 <figure id="figure-1">
-<p><img alt="Figure 1: WireShark Probe" src="../../images/WSProbe.png" width="400" />
+<p><img alt="Figure 1: WireShark Probe" src="../../images/WSProbe.png" width="250" />
   </p>
 <figcaption>Figure 1: WireShark Probe</figcaption>
 </figure>
@@ -1871,7 +1871,7 @@
 <p>In Figure 2, we can see two distinct moments. The first two packets describe WireGuard's handshake, while the following two packets demonstrate the first KeepAlive exchange.</p>
 <p>For this section, we shall focus on the first two packets, detailing the handshake and its components. Open the first packet and analyze its contents.</p>
 <figure id="figure-3">
-<p><img alt="Figure 3: Handshake first packet" src="../../images/WGEXPhand1.png" />
+<p><img alt="Figure 3: Handshake first packet" src="../../images/WGEXPhand1.png" width="750" />
   </p>
 <figcaption>Figure 3: Handshake first packet</figcaption>
 </figure>
@@ -1889,7 +1889,7 @@
 </details>
 <p>Now that we have identified all the elements of this packet and analyzed their purpose in WireGuard, let's analyze the second packet and see whether it matches what we theorized and what these elements are used for.</p>
 <figure id="figure-4">
-<p><img alt="Figure 4: Handshake second packet" src="../../images/WGEXPhand2.png" />
+<p><img alt="Figure 4: Handshake second packet" src="../../images/WGEXPhand2.png" width="750" />
   </p>
 <figcaption>Figure 4: Handshake second packet</figcaption>
 </figure>
@@ -1917,7 +1917,7 @@
 </figure>
 <p>From these packets, we can see the following elements:</p>
 <figure id="figure-6">
-<p><img alt="Figure 6: WireGuard KeepAlive Analysis" src="../../images/WGKeepAA.png" />
+<p><img alt="Figure 6: WireGuard KeepAlive Analysis" src="../../images/WGKeepAA.png" width="750" />
   </p>
 <figcaption>Figure 6: WireGuard KeepAlive Analysis</figcaption>
 </figure>
@@ -1938,7 +1938,7 @@
 <p>Creating these packets is as simple as performing a ping from WG1 to WG2, targeting WG2's tunnel interface.</p>
 <p>If we let five pings occur, we should get a capture that looks like this:</p>
 <figure id="figure-8">
-<p><img alt="Figure 8: WireGuard Regular Operation" src="../../images/WGRegOP.png" />
+<p><img alt="Figure 8: WireGuard Regular Operation" src="../../images/WGRegOP.png" width="750" />
   </p>
 <figcaption>Figure 8: WireGuard Regular Operation</figcaption>
 </figure>
@@ -1959,7 +1959,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wg
 </span></code></pre></div>
 <figure id="figure-9">
-<p><img alt="Figure 9: WireGuard Roaming Packets" src="../../images/WGRoamingPackets.png" />
+<p><img alt="Figure 9: WireGuard Roaming Packets" src="../../images/WGRoamingPackets.png" width="750" />
   </p>
 <figcaption>Figure 9: WireGuard Roaming Packets</figcaption>
 </figure>

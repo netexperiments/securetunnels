@@ -1945,14 +1945,14 @@
 </span></code></pre></div>
 <p>The TLS connection should be successfully established. By analyzing the Wireshark capture and the terminal output, we should find evidence that our hybrid key exchange group was used. Let's start with Wireshark:</p>
 <figure id="figure-1">
-<p><img alt="Figure 1: Hybrid Handshake Client side" src="../../images/PQMLKEM1.png" />
+<p><img alt="Figure 1: Hybrid Handshake Client side" src="../../images/PQMLKEM1.png" width="600" />
   </p>
 <figcaption>Figure 1: Hybrid Handshake Client side</figcaption>
 </figure>
 <p>As shown in Figure 1, the Client Hello contains X25519MLKEM768 as the only offered key exchange group in the key_share extension. This is expected because we configured the client to restrict its available groups to this single group.</p>
 <p>We can further confirm the negotiated group by examining the Server Hello in Figure 2:</p>
 <figure id="figure-2">
-<p><img alt="Figure 2: Hybrid Handshake Server side" src="../../images/PQMLKEM2.png" />
+<p><img alt="Figure 2: Hybrid Handshake Server side" src="../../images/PQMLKEM2.png" width="600" />
   </p>
 <figcaption>Figure 2: Hybrid Handshake Server side</figcaption>
 </figure>
@@ -1960,7 +1960,7 @@
 <p>We can also confirm the negotiated group through the information displayed in the terminal when the client connects to the server.</p>
 <p>By looking at the negotiation section of the output shown in Figure 3, we can see information such as the cipher suite, protocol version, compression, public key information, and certificate verification result. We can also see the negotiated group, which in this case is our chosen X25519MLKEM768.</p>
 <figure id="figure-3">
-<p><img alt="Figure 3: Hybrid Handshake Client side terminal" src="../../images/PQMLKEM3.png" />
+<p><img alt="Figure 3: Hybrid Handshake Client side terminal" src="../../images/PQMLKEM3.png" width="600" />
   </p>
 <figcaption>Figure 3: Hybrid Handshake Client side terminal</figcaption>
 </figure>
@@ -1970,12 +1970,12 @@
 <p>Although hybrid methods provide additional post-quantum protection, they generally require more resources to generate and process their cryptographic material. They also result in larger handshake messages that must be transmitted across the network.</p>
 <p>We can observe this difference by examining the size of the key share information in both the Client Hello and Server Hello from our hybrid test.</p>
 <figure id="figure-4">
-<p><img alt="Figure 4: Hybrid Handshake Client Hello length" src="../../images/PQLENGTH1.png" />
+<p><img alt="Figure 4: Hybrid Handshake Client Hello length" src="../../images/PQLENGTH1.png" width="300" />
   </p>
 <figcaption>Figure 4: Hybrid Handshake Client Hello length</figcaption>
 </figure>
 <figure id="figure-5">
-<p><img alt="Figure 5: Hybrid Handshake Server Hello length" src="../../images/PQLENGTH2.png" />
+<p><img alt="Figure 5: Hybrid Handshake Server Hello length" src="../../images/PQLENGTH2.png" width="300" />
   </p>
 <figcaption>Figure 5: Hybrid Handshake Server Hello length</figcaption>
 </figure>
@@ -1990,14 +1990,14 @@
 </span></code></pre></div>
 <p>We can then examine the resulting Client Hello in Wireshark.</p>
 <figure id="figure-6">
-<p><img alt="Figure 6: Classical Handshake Client Hello length" src="../../images/PQLENGTH3.png" />
+<p><img alt="Figure 6: Classical Handshake Client Hello length" src="../../images/PQLENGTH3.png" width="300" />
   </p>
 <figcaption>Figure 6: Classical Handshake Client Hello length</figcaption>
 </figure>
 <p>As shown in Figure 6, the classical X25519 key share takes 38 bytes out of a total packet size of 210 bytes, or approximately 18% of the total packet.</p>
 <p>Similarly, Figure 7 shows that the classical key share takes 36 bytes out of a total packet size of 122 bytes, or approximately 30% of the total packet.</p>
 <figure id="figure-7">
-<p><img alt="Figure 7: Classical Handshake Server Hello length" src="../../images/PQLENGTH4.png" />
+<p><img alt="Figure 7: Classical Handshake Server Hello length" src="../../images/PQLENGTH4.png" width="300" />
   </p>
 <figcaption>Figure 7: Classical Handshake Server Hello length</figcaption>
 </figure>
@@ -2050,7 +2050,7 @@
 <p>The first command performs the decapsulation and writes the resulting shared secret to mlkem768.decapsulated. The next two commands calculate the SHA-256 hashes of the original and decapsulated secrets, allowing us to verify that they are identical. Finally, cmp directly compares the two files.</p>
 <p>If the operation was successful, the two SHA-256 hashes should be identical, and cmp should produce no output because the files are identical, as shown in Figure 8.</p>
 <figure id="figure-8">
-<p><img alt="Figure 8: MLKEM encapsulation check" src="../../images/PQENCAP.png" />
+<p><img alt="Figure 8: MLKEM encapsulation check" src="../../images/PQENCAP.png" width="600" />
   </p>
 <figcaption>Figure 8: MLKEM encapsulation check</figcaption>
 </figure>
@@ -2092,7 +2092,7 @@
 </span></code></pre></div>
 <p>We should now see an output similar to the one shown in Figure 9, where the verification fails because the message is now different from the one that was originally signed. As a result, the signature no longer matches the modified message, causing the verification check to fail.</p>
 <figure id="figure-9">
-<p><img alt="Figure 9: MLDSA Signature check" src="../../images/PQMLDSA1.png" />
+<p><img alt="Figure 9: MLDSA Signature check" src="../../images/PQMLDSA1.png" width="600" />
   </p>
 <figcaption>Figure 9: MLDSA Signature check</figcaption>
 </figure>
@@ -2139,7 +2139,7 @@
 </span></code></pre></div>
 <p>The connection should be successful because the certificate can be correctly verified. Although the use of the ML-DSA certificate is not immediately visible in the Wireshark packet exchange, we can confirm it from the terminal output, as shown in Figure 10:</p>
 <figure id="figure-10">
-<p><img alt="Figure 10: MLDSA Certificate in TLS" src="../../images/PQMLDSA2.png" />
+<p><img alt="Figure 10: MLDSA Certificate in TLS" src="../../images/PQMLDSA2.png" width="400" />
   </p>
 <figcaption>Figure 10: MLDSA Certificate in TLS</figcaption>
 </figure>
@@ -2165,7 +2165,7 @@
 <p>The handshake should fail because the client and server do not have a mutually supported key exchange group.</p>
 <p>The resulting TLS alert can be observed during the handshake. In this case, the alert is SSL alert number 40, as shown in Figure 11. This alert corresponds to a handshake failure, indicating that the peers could not successfully negotiate the required TLS parameters.</p>
 <figure id="figure-11">
-<p><img alt="Figure 11: Handshake failure between classic and hybrid groups" src="../../images/PQMIS1.png" />
+<p><img alt="Figure 11: Handshake failure between classic and hybrid groups" src="../../images/PQMIS1.png" width="600" />
   </p>
 <figcaption>Figure 11: Handshake failure between classic and hybrid groups</figcaption>
 </figure>
@@ -2182,7 +2182,7 @@
 <p>This will start a new server restricted to the SecP384r1MLKEM1024 hybrid key exchange group.</p>
 <p>Then, reconnect using the same hybrid client as before and observe the outcome:</p>
 <figure id="figure-12">
-<p><img alt="Figure 12: Handshake failure between two hybrid groups" src="../../images/PQMIS2.png" />
+<p><img alt="Figure 12: Handshake failure between two hybrid groups" src="../../images/PQMIS2.png" width="600" />
   </p>
 <figcaption>Figure 12: Handshake failure between two hybrid groups</figcaption>
 </figure>
