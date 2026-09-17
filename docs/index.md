@@ -1,7 +1,7 @@
 # Secure Tunneling Laboratories
 
 Welcome to the Secure Tunneling Laboratories repository.
-On this website, we aim to bring you several laboratories focused on showcasing tunneling protocols, the PKI used by many of them, and the post-quantum key exchange methods that are starting to be used.
+On this website, we aim to bring you several laboratories focused on showcasing secure tunneling and secure-channel technologies, the PKI used by many of them, and post-quantum and hybrid mechanisms for key establishment and authentication.
 
 This website contains an overview of all the available artifacts and two setup guides for the emulators used, GNS3 and ContainerLab, to help prepare the test environment.
 
