@@ -90,7 +90,7 @@ In Figure 7, the first packet we see is from the Key Server, which announces its
 When we disrupt this pattern by resetting the connection, we expect to see something similar to the following image:
 
 <figure markdown id="figure-8">
-  ![Figure 8: MKA Handshake](../images/MKAreconn.png)
+  ![Figure 8: MKA Handshake](../images/MKARECON.png)
   <figcaption>Figure 8: MKA Handshake</figcaption>
 </figure>
 
