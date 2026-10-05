@@ -1,10 +1,10 @@
 site_name: Secure Tunneling Labs
-site_url: https://groudonramsay.github.io/SecureTunnelingLabs/
+site_url: https://netexperiments.github.io/SecureTunnelingLabs/
 site_description: Secure Tunneling Labs is a collection of experiments and tutorials that demonstrate the use of various tunneling protocols and techniques for secure communication over untrusted networks. The labs cover a range of protocols, including MACsec, ANYsec, WireGuard, IPsec, TLS, DTLS, SSH, PKI, and PQ.
 site_author: Miguel
 
-repo_url: https://github.com/groudonramsay/SecureTunnelingLabs
-repo_name: groudonramsay/SecureTunnelingLabs
+repo_url: https://github.com/netexperiments/securetunnels
+repo_name: netexperiments/securetunnels
 
 theme:
   name: material
@@ -117,7 +117,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/groudonramsay
+      link: https://github.com/netexperiments
 
 nav:
   - Home: index.md

@@ -1,14 +1,14 @@
 ## Secure Tunneling Labs
 
-Secure Tunneling Labs is an open-source laboratory environment for reproducible experiments with secure tunneling and secure-channel protocols.
+Secure Tunneling Labs is an open-source laboratory environment for reproducible experiments with secure tunneling protocols.
 
 ## Documentation
 
-Documentation site: [https://groudonramsay.github.io/SecureTunnelingLabs/](https://groudonramsay.github.io/SecureTunnelingLabs/)
+Documentation site: [https://netexperiments.github.io/securetunnels/](https://netexperiments.github.io/securetunnels/)
 
 ## Repository
 
-Source repository: [https://github.com/groudonramsay/SecureTunnelingLabs](https://github.com/groudonramsay/SecureTunnelingLabs)
+Source repository: [https://netexperiments.github.io/securetunnels/](https://netexperiments.github.io/securetunnels/)
 
 ## Current Version
 
