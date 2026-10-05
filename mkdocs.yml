@@ -1,5 +1,5 @@
 site_name: Secure Tunneling Labs
-site_url: https://netexperiments.github.io/SecureTunnelingLabs/
+site_url: https://netexperiments.github.io/securetunnels/
 site_description: Secure Tunneling Labs is a collection of experiments and tutorials that demonstrate the use of various tunneling protocols and techniques for secure communication over untrusted networks. The labs cover a range of protocols, including MACsec, ANYsec, WireGuard, IPsec, TLS, DTLS, SSH, PKI, and PQ.
 site_author: Miguel
 

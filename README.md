@@ -8,7 +8,7 @@ Documentation site: [https://netexperiments.github.io/securetunnels/](https://ne
 
 ## Repository
 
-Source repository: [https://netexperiments.github.io/securetunnels/](https://netexperiments.github.io/securetunnels/)
+Source repository: [https://netexperiments.github.com/securetunnels/](https://netexperiments.github.com/securetunnels/)
 
 ## Current Version
 
