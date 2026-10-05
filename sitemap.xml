@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/anysec/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/anysec/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/anysec/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/anysec/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/artifact_overview/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/artifact_overview/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/containerlab/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/containerlab/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/dtls/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/dtls/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/dtls/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/dtls/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/gns3/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/gns3/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/ipsec/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/ipsec/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/ipsec/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/ipsec/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/macsec/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/macsec/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/macsec/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/macsec/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/pki/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/pki/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/pki/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/pki/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/pq/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/pq/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/pq/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/pq/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/ssh/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/ssh/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/ssh/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/ssh/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/tls/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/tls/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/tls/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/tls/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/wireguard/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/wireguard/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://groudonramsay.github.io/SecureTunnelingLabs/wireguard/experiments/</loc>
-         <lastmod>2026-09-17</lastmod>
+         <loc>https://netexperiments.github.io/securetunnels/wireguard/experiments/</loc>
+         <lastmod>2026-10-05</lastmod>
     </url>
 </urlset>
